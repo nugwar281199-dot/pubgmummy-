@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,14 +8,14 @@
 <style>
 body{
     margin:0;
-    background:url("images/bg.jpg") no-repeat center center;
+    background:url("bg.jpg") no-repeat center center;
     background-size:cover;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
     font-family:Arial;
-}။ 
+}
 
 .container{
     text-align:center;
@@ -82,20 +82,19 @@ button{
 <div id="pointer"></div>
 
 <div id="wheel">
-    <div class="slot"><img src="images/mummyset1.png"></div>
-    <div class="slot"><img src="images/mummyset2.png"></div>
-    <div class="slot"><img src="images/mummyset3.png"></div>
-    <div class="slot"><img src="images/mummyset4.png"></div>
-    <div class="slot"><img src="images/mummyset5.png"></div>
-    <div class="slot"><img src="images/mummyset6.png"></div>
-    <div class="slot"><img src="images/mummyset7.png"></div>
+    <div class="slot"><img src="mummyset1.png"></div>
+    <div class="slot"><img src="mummyset2.png"></div>
+    <div class="slot"><img src="mummyset3.png"></div>
+    <div class="slot"><img src="mummyset4.png"></div>
+    <div class="slot"><img src="mummyset5.png"></div>
+    <div class="slot"><img src="mummyset6.png"></div>
+    <div class="slot"><img src="mummyset7.png"></div>
 </div>
 
 <button onclick="spin()">UC 0</button>
 
-<!--  spin  -->
 <button id="nextBtn" onclick="goNext()">
-မိမိGmae အကောင့်ထဲသို့ထည့်ပါ
+မိမိ Game အကောင့်ထဲသို့ထည့်ပါ
 </button>
 
 <h2 id="result"></h2>
@@ -130,9 +129,8 @@ function spin(){
 
     document.getElementById("result").innerText = "Spinning...";
 
-    // 4 sec  button 
     setTimeout(()=>{
-        document.getElementById("result").innerText = " WINNER!";
+        document.getElementById("result").innerText = "🏆 WINNER!";
         document.getElementById("nextBtn").style.display = "inline-block";
     },4000);
 }
