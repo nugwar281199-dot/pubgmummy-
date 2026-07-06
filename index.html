@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -110,10 +110,8 @@ const radius = 120;
 
 slots.forEach((slot,i)=>{
     let angle = (360/slots.length)*i;
-
     let x = Math.sin(angle*Math.PI/180)*radius;
     let y = -Math.cos(angle*Math.PI/180)*radius;
-
     slot.style.left = (center + x - 35) + "px";
     slot.style.top  = (center + y - 35) + "px";
 });
@@ -121,12 +119,10 @@ slots.forEach((slot,i)=>{
 let deg = 0;
 
 function spin(){
-
     let random = Math.floor(Math.random()*360);
     deg += 3600 + random;
 
     wheel.style.transform = "rotate("+deg+"deg)";
-
     document.getElementById("result").innerText = "Spinning...";
 
     setTimeout(()=>{
@@ -141,4 +137,4 @@ function goNext(){
 </script>
 
 </body>
-</html>
+</html>  
